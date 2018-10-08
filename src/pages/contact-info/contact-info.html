@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Contact Info
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Email:</ion-label>
+            <ion-input [disabled]="isEmailEditDisabled" [(ngModel)]="contact.email"></ion-input>
+            <button ion-button item-end clear (click)="switchEmailEdit(isEmailEditDisabled)">
+                <ion-icon name="md-create"></ion-icon>
+            </button>
+        </ion-item>
+        <ion-item>
+            <ion-label>Phone number:</ion-label>
+            <ion-input [disabled]="isPhoneNumberEditDisabled" [(ngModel)]="contact.phone"></ion-input>
+            <button ion-button item-end clear (click)="switchPhoneNumberEdit(isPhoneNumberEditDisabled)">
+                <ion-icon name="md-create"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+    <ion-grid text-center>
+        <ion-row justify-content-center>
+            <button ion-button icon-only color="secondary" (click)="callContact">
+                <ion-icon name="call"></ion-icon>
+            </button>
+            <button ion-button icon-only>
+                <ion-icon name="mail"></ion-icon>
+            </button>
+            <button ion-button icon-only color="danger">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-row>
+    </ion-grid>
+</ion-content>

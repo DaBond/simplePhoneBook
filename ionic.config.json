@@ -1,0 +1,8 @@
+{
+  "name": "simplePhoneBook",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "7a0184f4"
+}
