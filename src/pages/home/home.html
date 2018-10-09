@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item-group *ngIf="favouriteContacts.length">
+    <ion-item-group *ngIf="!!favouriteContacts && !!favouriteContacts.length">
         <ion-item-divider color="light">Favourite</ion-item-divider>
             <ion-item *ngFor="let fav of favouriteContacts; let i = index" (click)="goToContactInfo(fav)">
                 <h2>
@@ -23,7 +23,7 @@
                 </button>
             </ion-item>
     </ion-item-group>
-    <ion-item-group *ngIf="contacts.length">
+    <ion-item-group *ngIf="!!contacts && !!contacts.length">
         <ion-item-divider color="light">All Contacts</ion-item-divider>
         <ion-item *ngFor="let item of contacts; let i = index" (click)="goToContactInfo(item)">
             <h2>

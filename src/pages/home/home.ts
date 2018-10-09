@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "ionic-angular";
 import {ContactInfoPage} from "../contact-info/contact-info";
+import {ApiService} from "../../app/services/api.service";
 
 @Component({
     selector: 'page-home',
@@ -8,18 +9,26 @@ import {ContactInfoPage} from "../contact-info/contact-info";
 })
 export class HomePage implements OnInit {
 
-    contacts: any;
-    favouriteContacts: any;
+    contacts = [];
+    favouriteContacts = [];
 
-    constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController, private apiService: ApiService) {
 
     }
 
     ngOnInit() {
-        this.contacts = localStorage.getItem('contacts')? JSON.parse(localStorage.getItem('contacts')): [];
-        this.contacts = this.contacts.sort(this.sortByName);
-        this.favouriteContacts = localStorage.getItem('favouriteContacts')? JSON.parse(localStorage.getItem('favouriteContacts')): [];
-        this.favouriteContacts = this.favouriteContacts.sort(this.sortByName);
+        if (!localStorage.getItem('contacts') && !localStorage.getItem('favouriteContacts')) {
+            this.apiService.getPhoneBookData().subscribe(data => {
+                localStorage.setItem('contacts', JSON.stringify(data));
+                this.contacts = data;
+                this.contacts.sort(this.sortByName);
+            });
+        } else {
+            this.contacts = localStorage.getItem('contacts')? JSON.parse(localStorage.getItem('contacts')): [];
+            this.favouriteContacts = localStorage.getItem('favouriteContacts')? JSON.parse(localStorage.getItem('favouriteContacts')): [];
+            this.contacts.sort(this.sortByName);
+            this.favouriteContacts.sort(this.sortByName);
+        }
     }
 
     sortByName(a, b) {
@@ -30,7 +39,7 @@ export class HomePage implements OnInit {
         contact.isFavourite = !contact.isFavourite;
         this.favouriteContacts.push(contact);
         this.contacts.splice(index, 1);
-        this.favouriteContacts = this.favouriteContacts.sort(this.sortByName);
+        this.favouriteContacts.sort(this.sortByName);
         localStorage.setItem('contacts', JSON.stringify(this.contacts));
         localStorage.setItem('favouriteContacts', JSON.stringify(this.favouriteContacts));
     }
@@ -39,7 +48,7 @@ export class HomePage implements OnInit {
         contact.isFavourite = !contact.isFavourite;
         this.contacts.push(contact);
         this.favouriteContacts.splice(index, 1);
-        this.contacts = this.contacts.sort(this.sortByName);
+        this.contacts.sort(this.sortByName);
         localStorage.setItem('contacts', JSON.stringify(this.contacts));
         localStorage.setItem('favouriteContacts', JSON.stringify(this.favouriteContacts));
     }
