@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Simple Phone Book
+            Contacts - List
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -16,7 +16,7 @@
                 <h3>
                     {{fav.company.name}}
                 </h3>
-                <ion-icon item-end name="arrow-forward-outline"></ion-icon>
+                <!--<ion-icon item-end name="arrow-forward-outline"></ion-icon>-->
                 <button ion-button clear item-end (click)="makeUnfavourite(fav, i)">
                     <ion-icon *ngIf="fav.isFavourite" class="yellow" name="star"></ion-icon>
                     <ion-icon *ngIf="!fav.isFavourite" name="star-outline"></ion-icon>
@@ -24,7 +24,7 @@
             </ion-item>
     </ion-item-group>
     <ion-item-group *ngIf="contacts.length">
-        <ion-item-divider color="light">Contacts</ion-item-divider>
+        <ion-item-divider color="light">All Contacts</ion-item-divider>
         <ion-item *ngFor="let item of contacts; let i = index" (click)="goToContactInfo(item)">
             <h2>
                 {{item.name}}
@@ -32,7 +32,7 @@
             <h3>
                 {{item.company.name}}
             </h3>
-            <ion-icon item-end name="arrow-forward-outline"></ion-icon>
+            <!--<ion-icon item-end name="arrow-forward-outline"></ion-icon>-->
             <button ion-button clear item-end (click)="makeFavourite(item, i)">
                 <ion-icon *ngIf="item.isFavourite" class="yellow" name="star"></ion-icon>
                 <ion-icon *ngIf="!item.isFavourite" name="star-outline"></ion-icon>

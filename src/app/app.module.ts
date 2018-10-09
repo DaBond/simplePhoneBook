@@ -4,7 +4,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {HttpModule} from '@angular/http';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
-import {File} from '@ionic-native/file';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
@@ -33,8 +33,8 @@ import {ContactInfoPage} from "../pages/contact-info/contact-info";
     providers: [
         StatusBar,
         SplashScreen,
-        File,
         CallNumber,
+        EmailComposer,
         NativeStorage,
         ApiService,
         {provide: ErrorHandler, useClass: IonicErrorHandler}

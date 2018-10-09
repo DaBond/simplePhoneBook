@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Contact Info
+            Contact Info: {{contact.name}}
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -25,13 +25,13 @@
     </ion-list>
     <ion-grid text-center>
         <ion-row justify-content-center>
-            <button ion-button icon-only color="secondary" (click)="callContact">
+            <button ion-button icon-only color="secondary" (click)="callContact()">
                 <ion-icon name="call"></ion-icon>
             </button>
-            <button ion-button icon-only>
+            <button ion-button icon-only (click)="sendEmailToContact()">
                 <ion-icon name="mail"></ion-icon>
             </button>
-            <button ion-button icon-only color="danger">
+            <button ion-button icon-only color="danger" (click)="deleteContactConfirm()">
                 <ion-icon name="trash"></ion-icon>
             </button>
         </ion-row>
